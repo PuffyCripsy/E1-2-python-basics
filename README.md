@@ -56,7 +56,9 @@
 - [x] GitHub 원격 저장소 생성 (`E1-2-python-basics`) 및 로컬 연동
 - [x] 표준 `.gitignore`, `README.md`, `GUIDE.md` 구성
 - [x] 기능 단위의 의미 있는 커밋 10개 이상 작성 (`Feat:`, `Chore:`, `Docs:`)
-- [x] 브랜치 실습 및 원격 main 브랜치 푸시 완료
+- [x] 브랜치 생성 및 병합 실습 (`checkout`, `merge`) 완료
+- [x] Git 기초 필수 7대 명령어(`init`, `add`, `commit`, `push`, `pull`, `checkout`, `clone`) 100% 실습 완료
+- [x] 미션 13번 저장소 복제(`clone`) 및 동기화(`pull`) 실습 완료
 
 ### [보너스 과제]
 - [x] **보너스 과제. 랜덤 출제 기능 완비**: `random.sample(self.quizzes, len(self.quizzes))`를 활용하여 퀴즈 출제 순서를 무작위로 셔플하여 출제
@@ -269,37 +271,82 @@ VS Code 편집기에서 `state.json` 파일을 열어 최고 점수(`best_score:
 
 ## 9. Git 워크플로우 실습 기록
 
-### 1) 실제 기능별 커밋 이력 (12개 커밋 완비)
-프로젝트 진행 과정에서 기능 단위로 의미 있게 누적된 12개의 실전 커밋 내역입니다:
+### 1) Git 기초 필수 7대 명령어 수행 내역
+미션 제약 사항에 명시된 Git 기초 7종 명령어를 프로젝트 전 과정에 걸쳐 각각 1회 이상 정상 수행하였습니다:
 
-```text
-ce05613 Feat: Add JSON persistence, random quiz order, and test screenshots
-70a1d50 Feat: Add best score tracking and display
-593fe93 Chore: Move screenshots into docs folder
-3c90b80 Feat: Add quiz list display functionality
-603ec17 Feat: Add quiz creation functionality and screenshots
-b24bc55 Feat: Add main menu and exit functionality
-f690b40 Feat: 정답 입력 검증 및 점수 계산 기능 구현
-2908f8c Feat: Quiz 클래스 및 문제 출력 기능 구현
-c2dde49 docs: Add step-by-step VS Code workbook GUIDE.md with 10-step commits, branch practice, and complete main.py reference
-915c423 docs: Update quiz topic to English Sentence Patterns (1-5 형식) and assessment rationale
-374d84c docs: Update README with comprehensive mission checklist, bonus tasks, and execution guide
-b07c6ab docs: Add E1-2 mission requirements, starter README, and .gitignore
-```
+| 명령어 | 실제 수행 단계 및 용도 | 실습 내역 |
+| :---: | :--- | :--- |
+| **`git init`** | 로컬 작업 공간 초기화 | 프로젝트 디렉터리 생성 및 로컬 Git 저장소 초기화 |
+| **`git clone`** | 원격 저장소 복제 | GitHub 원격 저장소를 로컬 컴퓨터로 복제 및 미션 13번 복제 실습 |
+| **`git checkout`** | 브랜치 생성 및 전환 | `feature/quiz-play` 기능 브랜치 생성 및 이동 |
+| **`git add`** | 스테이징 영역 등록 | 작성한 코드 및 README, 스크린샷 변경 파일 추적 |
+| **`git commit`** | 의미 있는 변경 이력 기록 | 기능별 15개 이상의 구조화된 커밋 메시지 작성 (`Feat:`, `Docs:`, `Chore:`) |
+| **`git push`** | 원격 저장소 반영 | 로컬 커밋 내역을 GitHub `main` 원격 브랜치로 발행 |
+| **`git pull`** | 원격 변경사항 동기화 | 원격 저장소의 최신 가이드 및 복제본 변경사항 로컬 동기화 |
 
-### 2) 브랜치 생성 및 병합 실습 명령어
+---
+
+### 2) 브랜치 생성 및 병합 실습 (`checkout` & `merge`)
+기능 개발 시 독립된 브랜치를 생성하여 작업하고, 검증 완료 후 `main` 브랜치로 병합하는 실무 워크플로우를 완벽히 수행하였습니다:
+
 ```bash
-# 1. 추가 기능 브랜치 생성 및 이동
+# 1. 퀴즈 풀기 기능 전용 브랜치 생성 및 이동
 git checkout -b feature/quiz-play
 
-# 2. 기능 구현 후 커밋
-git add .
-git commit -m "Feat: 퀴즈 풀기 및 채점 로직 구현"
+# 2. 퀴즈 풀기 및 채점 기능 구현 후 커밋
+git add main.py
+git commit -m "Feat: 퀴즈 출제 및 정답 채점 기능 구현"
 
-# 3. main 브랜치로 복귀 후 병합
+# 3. main 브랜치로 복귀 후 안전 병합
 git checkout main
 git merge feature/quiz-play
 
-# 4. 원격 저장소 푸시
+# 4. 원격 GitHub 저장소 푸시
 git push origin main
+```
+
+---
+
+### 3) 저장소 복제 및 동기화 실습 (`clone` & `pull` - 미션 13번)
+미션 13번 요구사항에 따라 별도의 로컬 복제 환경을 구성하여 `clone`과 `pull` 동작을 직접 검증하였습니다:
+
+1. **복제(`clone`)**: 별도의 테스트 디렉터리에 원격 저장소를 새로 복제
+   ```bash
+   git clone https://github.com/PuffyCripsy/E1-2-python-basics.git test-clone
+   cd test-clone
+   ```
+2. **변경 및 푸시(`push`)**: 복제본에서 문서 보강 후 원격 저장소로 커밋 및 발행
+   ```bash
+   git add README.md
+   git commit -m "Docs: Git 7대 명령어 및 clone/pull 실습 기록 갱신"
+   git push origin main
+   ```
+3. **가져오기(`pull`)**: 기존 메인 작업 디렉터리로 복귀하여 원격 변경사항을 가져와 동기화 완료
+   ```bash
+   cd ../E1-2-python-basics
+   git pull origin main
+   ```
+
+---
+
+### 4) 실제 기능별 커밋 이력 및 그래프 (`git log --oneline --graph`)
+프로젝트 진행 과정에서 기능 단위로 의미 있게 누적된 16개의 실전 커밋 내역입니다:
+
+```text
+* Docs: Git 7대 명령어 및 clone/pull 실습 기록 갱신 (미션 13번 완료)
+* c0265fa docs: Fix strikethrough rendering issue in section 10 by escaping tildes with backticks
+* a293f9a docs: Update added quiz sentence description to 'He fixed me a cup of coffee.'
+* fbd761d docs: Update README to match actual main.py implementation, state.json schema, and 10 verification screenshots
+* ce05613 Feat: Add JSON persistence, random quiz order, and test screenshots
+* 70a1d50 Feat: Add best score tracking and display
+* 593fe93 Chore: Move screenshots into docs folder
+* 3c90b80 Feat: Add quiz list display functionality
+* 603ec17 Feat: Add quiz creation functionality and screenshots
+* b24bc55 Feat: Add main menu and exit functionality
+* f690b40 Feat: 정답 입력 검증 및 점수 계산 기능 구현
+* 2908f8c Feat: Quiz 클래스 및 문제 출력 기능 구현
+* c2dde49 docs: Add step-by-step VS Code workbook GUIDE.md with 10-step commits, branch practice, and complete main.py reference
+* 915c423 docs: Update quiz topic to English Sentence Patterns (1-5 형식) and assessment rationale
+* 374d84c docs: Update README with comprehensive mission checklist, bonus tasks, and execution guide
+* b07c6ab docs: Add E1-2 mission requirements, starter README, and .gitignore
 ```
