@@ -76,7 +76,7 @@ E1-2-python-basics/
 ├── main.py                 # 퀴즈 게임 메인 실행 파일 (Quiz, QuizGame 클래스 및 CLI)
 ├── state.json              # 퀴즈 목록 및 최고 점수 영속 저장 파일
 └── docs/
-    └── screenshots/        # 과제 수행 및 기능 검증 스크린샷 (총 10종)
+    └── screenshots/        # 과제 수행 및 기능 검증 스크린샷 (총 12종)
         ├── 01_quiz_list.png
         ├── 02_quiz_add.png
         ├── 03_quiz_list_updated.png
@@ -86,7 +86,9 @@ E1-2-python-basics/
         ├── 07_json_saved.png
         ├── 08_quiz_reload.png
         ├── 09_best_score_reload.png
-        └── 10_invalid_input.png
+        ├── 10_invalid_input.png
+        ├── 11_git_pull.PNG
+        └── 12_git_clone.PNG
 ```
 
 ---
@@ -195,7 +197,7 @@ python main.py
 
 ---
 
-## 8. 게임 구현 및 동작 검증 스크린샷 (10종)
+## 8. 게임 구현 및 동작 검증 스크린샷 (12종)
 
 프로그램 실행 및 구현 순서에 따른 실제 동작 검증 스크린샷 10종입니다.
 
@@ -269,6 +271,20 @@ VS Code 편집기에서 `state.json` 파일을 열어 최고 점수(`best_score:
 
 ---
 
+### 11) 저장소 최신 변경사항 동기화 실습 (git pull)
+VS Code 터미널에서 `git pull origin main` 명령어를 실행하여 원격 GitHub 저장소의 최신 커밋 내역(`ce05613..fc1604e`)을 로컬 프로젝트 디렉터리로 정상 가져오기(Fast-forward) 완료한 실제 터미널 검증 화면입니다.
+
+![11_git_pull.PNG](docs/screenshots/11_git_pull.PNG)
+
+---
+
+### 12) 미션 13번 저장소 복제 실습 (git clone)
+상위 디렉터리로 이동(`cd ..`)한 후 `git clone https://github.com/PuffyCripsy/E1-2-python-basics.git E1-2-clone-practice` 명령어를 실행하여 별도의 복제 폴더(`E1-2-clone-practice`)로 저장소 전체를 성공적으로 복제한 실제 터미널 검증 화면입니다.
+
+![12_git_clone.PNG](docs/screenshots/12_git_clone.PNG)
+
+---
+
 ## 9. Git 워크플로우 실습 기록
 
 ### 1) Git 기초 필수 7대 명령어 수행 내역
@@ -307,33 +323,34 @@ git push origin main
 
 ---
 
-### 3) 저장소 복제 및 동기화 실습 (`clone` & `pull` - 미션 13번)
-미션 13번 요구사항에 따라 별도의 로컬 복제 환경을 구성하여 `clone`과 `pull` 동작을 직접 검증하였습니다:
+### 3) 저장소 복제 및 동기화 실습 (clone & pull - 미션 13번)
+미션 13번 요구사항에 따라 실제 터미널에서 `git pull`과 `git clone` 명령어를 실행하여 검증을 완료하였습니다:
 
-1. **복제(`clone`)**: 별도의 테스트 디렉터리에 원격 저장소를 새로 복제
+1. **최신 내용 가져오기 (`git pull`)**:
+   로컬 프로젝트 디렉터리(`E1-2-python-basics`)에서 원격 저장소의 최신 커밋을 동기화하였습니다.
    ```bash
-   git clone https://github.com/PuffyCripsy/E1-2-python-basics.git test-clone
-   cd test-clone
-   ```
-2. **변경 및 푸시(`push`)**: 복제본에서 문서 보강 후 원격 저장소로 커밋 및 발행
-   ```bash
-   git add README.md
-   git commit -m "Docs: Git 7대 명령어 및 clone/pull 실습 기록 갱신"
-   git push origin main
-   ```
-3. **가져오기(`pull`)**: 기존 메인 작업 디렉터리로 복귀하여 원격 변경사항을 가져와 동기화 완료
-   ```bash
-   cd ../E1-2-python-basics
    git pull origin main
    ```
+   ![11_git_pull.PNG](docs/screenshots/11_git_pull.PNG)
+
+2. **별도 디렉터리로 저장소 복제 (`git clone`)**:
+   상위 폴더(`cd ..`)로 이동한 후, 별도의 복제 디렉터리(`E1-2-clone-practice`)로 저장소 전체를 복제하였습니다.
+   ```bash
+   cd ..
+   git clone https://github.com/PuffyCripsy/E1-2-python-basics.git E1-2-clone-practice
+   ```
+   ![12_git_clone.PNG](docs/screenshots/12_git_clone.PNG)
 
 ---
 
 ### 4) 실제 기능별 커밋 이력 및 그래프 (`git log --oneline --graph`)
-프로젝트 진행 과정에서 기능 단위로 의미 있게 누적된 16개의 실전 커밋 내역입니다:
+프로젝트 진행 과정에서 기능 단위로 의미 있게 누적된 실전 커밋 내역입니다:
 
 ```text
-* Docs: Git 7대 명령어 및 clone/pull 실습 기록 갱신 (미션 13번 완료)
+* 7e8d6b8 Docs: Git 복제 및 동기화 실습 증빙 추가
+* fc1604e docs: Update GUIDE.md workbook to match revised README and actual main.py code
+* b74fe72 docs: Fix strikethrough in section 3 checklist by wrapping ranges in backticks
+* 9e13bb8 Docs: Git 7대 명령어 및 clone/pull 실습 기록 갱신 (미션 13번 완료)
 * c0265fa docs: Fix strikethrough rendering issue in section 10 by escaping tildes with backticks
 * a293f9a docs: Update added quiz sentence description to 'He fixed me a cup of coffee.'
 * fbd761d docs: Update README to match actual main.py implementation, state.json schema, and 10 verification screenshots

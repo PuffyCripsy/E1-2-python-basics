@@ -392,31 +392,19 @@ git commit -m "Feat: Add JSON persistence, random quiz order, and test screensho
 두 개발자가 협업하는 과정을 내 컴퓨터 안에서 흉내 내는 미션 필수 실습입니다:
 
 ```bash
-# 1. 상위 폴더로 이동 후 복제본 생성 (clone 실습)
-cd ..
-git clone https://github.com/PuffyCripsy/E1-2-python-basics.git test-copy
-
-# 2. 복제된 폴더로 들어가서 간단한 변경 후 푸시
-cd test-copy
-echo "# 실습 완료" > test.txt
-git add test.txt
-git commit -m "Docs: clone 실습 테스트 파일 추가"
-git push origin main
-
-# 3. 원래 작업 디렉터리로 복귀 후 동기화 (pull 실습)
-cd ../E1-2-python-basics
+# 1. 원격 저장소 최신 변경사항 동기화 (pull 실습)
 git pull origin main
 
-# 4. 연습용 복제 폴더 삭제 (선택)
+# 2. 상위 폴더로 이동 후 복제본 생성 (clone 실습)
 cd ..
-rm -rf test-copy
+git clone https://github.com/PuffyCripsy/E1-2-python-basics.git E1-2-clone-practice
 ```
 
 ---
 
-## 💻 9단계: 과제 제출 스크린샷 10종 확인
+## 💻 9단계: 과제 제출 스크린샷 12종 확인
 
-`docs/screenshots/` 폴더에 아래 10종의 스크린샷이 정상적으로 배치되어 있는지 확인합니다:
+`docs/screenshots/` 폴더에 아래 12종의 스크린샷이 정상적으로 배치되어 있는지 확인합니다:
 
 1. `01_quiz_list.png`: 기본 퀴즈 목록 조회 (메뉴 3번)
 2. `02_quiz_add.png`: 새로운 퀴즈 추가 (메뉴 2번)
@@ -428,6 +416,8 @@ rm -rf test-copy
 8. `08_quiz_reload.png`: 프로그램 재실행 후 퀴즈 목록 자동 복원 검증
 9. `09_best_score_reload.png`: 프로그램 재실행 후 최고 점수 복원 검증
 10. `10_invalid_input.png`: 메뉴 및 정답 입력 예외 처리 검증
+11. `11_git_pull.PNG`: 원격 변경사항 가져오기(`git pull`) 검증
+12. `12_git_clone.PNG`: 별도 디렉터리 저장소 복제(`git clone`) 검증
 
 ---
 
