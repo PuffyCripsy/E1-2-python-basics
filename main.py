@@ -55,13 +55,50 @@ class QuizGame:
 
             if choice == "1":
                 self.play_quiz()
-            elif choice in ["2", "3", "4"]:
+            elif choice == "2":
+                self.add_quiz()
+            elif choice in ["3", "4"]:
                 print("이 기능은 다음 단계에서 구현합니다.")
             elif choice == "5":
                 print("프로그램을 종료합니다.")
                 break
             else:
                 print("잘못된 입력입니다. 1~5 중에서 선택하세요.")
+
+    def add_quiz(self):
+        print("\n===== 새로운 퀴즈 추가 =====")
+
+        question = input("영어 문장을 입력하세요: ").strip()
+
+        while not question:
+            print("문제를 비워 둘 수 없습니다.")
+            question = input("영어 문장을 입력하세요: ").strip()
+
+        choices = []
+
+        for number in range(1, 5):
+            while True:
+                choice = input(f"{number}번 보기를 입력하세요: ").strip()
+
+                if choice:
+                    choices.append(choice)
+                    break
+
+                print("보기를 비워 둘 수 없습니다.")
+
+        while True:
+            answer = input("정답 번호를 입력하세요 (1~4): ").strip()
+
+            if answer in ["1", "2", "3", "4"]:
+                answer = int(answer)
+                break
+
+            print("잘못된 입력입니다. 1~4 중에서 선택하세요.")
+
+        new_quiz = Quiz(question, choices, answer)
+        self.quizzes.append(new_quiz)
+
+        print("새로운 퀴즈가 추가되었습니다!")
 quizzes = [
     Quiz(
         "The birds sing sweetly in the trees.",
