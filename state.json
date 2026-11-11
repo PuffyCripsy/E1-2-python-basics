@@ -1,0 +1,65 @@
+{
+    "best_score": 6,
+    "quizzes": [
+        {
+            "question": "The birds sing sweetly in the trees.",
+            "choices": [
+                "1형식",
+                "2형식",
+                "3형식",
+                "4형식"
+            ],
+            "answer": 1
+        },
+        {
+            "question": "This soup smells delicious.",
+            "choices": [
+                "1형식",
+                "2형식",
+                "3형식",
+                "4형식"
+            ],
+            "answer": 2
+        },
+        {
+            "question": "She solved the difficult math problem.",
+            "choices": [
+                "2형식",
+                "3형식",
+                "4형식",
+                "5형식"
+            ],
+            "answer": 2
+        },
+        {
+            "question": "My grandmother sent me a wonderful present.",
+            "choices": [
+                "1형식",
+                "3형식",
+                "4형식",
+                "5형식"
+            ],
+            "answer": 3
+        },
+        {
+            "question": "The coach encouraged the players to do their best.",
+            "choices": [
+                "2형식",
+                "3형식",
+                "4형식",
+                "5형식"
+            ],
+            "answer": 4
+        },
+        {
+            "question": "Jason fixed me a cup of coffee.",
+            "choices": [
+                "1형식",
+                "2형식",
+                "4형식",
+                "5형식"
+            ],
+            "answer": 3
+        }
+    ]
+}

@@ -1,3 +1,5 @@
+import json
+import random
 
 class Quiz:
     def __init__(self, question, choices, answer):
@@ -14,8 +16,9 @@ class QuizGame:
 
     def play_quiz(self):
         self.score = 0
+        shuffled_quizzes = random.sample(self.quizzes, len(self.quizzes))
 
-        for quiz_number, quiz in enumerate(self.quizzes, start=1):
+        for quiz_number, quiz in enumerate(shuffled_quizzes, start=1):
             print(f"\n문제 {quiz_number}. {quiz.question}")
 
             for number, choice in enumerate(quiz.choices, start=1):
@@ -46,6 +49,7 @@ class QuizGame:
         if self.score > self.best_score:
             self.best_score = self.score
             print("새로운 최고 점수입니다!")       
+            self.save_state()
 
     def show_menu(self):
         while True:
@@ -105,6 +109,7 @@ class QuizGame:
 
         new_quiz = Quiz(question, choices, answer)
         self.quizzes.append(new_quiz)
+        self.save_state()
 
         print("새로운 퀴즈가 추가되었습니다!")
 
@@ -128,6 +133,73 @@ class QuizGame:
     def show_best_score(self):
         print("\n===== 최고 점수 =====")
         print(f"현재 최고 점수: {self.best_score}점")
+
+    def save_state(self):
+        data = {
+            "best_score": self.best_score,
+            "quizzes": []
+        }
+
+        for quiz in self.quizzes:
+            data["quizzes"].append({
+                "question": quiz.question,
+                "choices": quiz.choices,
+                "answer": quiz.answer
+            })
+
+        try:
+            with open("state.json", "w", encoding="utf-8") as file:
+                json.dump(data, file, ensure_ascii=False, indent=4)
+
+            print("데이터가 저장되었습니다.")
+
+        except OSError as error:
+            print(f"데이터 저장 중 오류가 발생했습니다: {error}")
+             
+
+    def load_state(self):
+        try:
+            with open("state.json", "r", encoding="utf-8") as file:
+                data = json.load(file)
+
+            best_score = data["best_score"]
+            saved_quizzes = data["quizzes"]
+
+            if not isinstance(best_score, int) or best_score < 0:
+                raise ValueError("최고 점수 데이터가 올바르지 않습니다.")
+
+            if not isinstance(saved_quizzes, list):
+                raise ValueError("퀴즈 목록 데이터가 올바르지 않습니다.")
+
+            loaded_quizzes = []
+
+            for item in saved_quizzes:
+                question = item["question"]
+                choices = item["choices"]
+                answer = item["answer"]
+
+                if (
+                    not isinstance(question, str)
+                    or not question.strip()
+                    or not isinstance(choices, list)
+                    or len(choices) != 4
+                    or not all(isinstance(c, str) and c.strip() for c in choices)
+                    or type(answer) is not int
+                    or answer not in [1, 2, 3, 4]
+                ):
+                    raise ValueError("저장된 퀴즈 데이터가 올바르지 않습니다.")
+
+                loaded_quizzes.append(Quiz(question, choices, answer))
+
+            self.best_score = best_score
+            self.quizzes = loaded_quizzes
+            print("저장된 데이터를 불러왔습니다.")
+
+        except FileNotFoundError:
+            print("저장 파일이 없어 기본 퀴즈로 시작합니다.")
+
+        except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
+            print("저장 파일을 읽을 수 없어 기본 퀴즈로 시작합니다.")        
 
 quizzes = [
     Quiz(
@@ -159,5 +231,13 @@ quizzes = [
 
 
 game = QuizGame(quizzes)
-game.show_menu()
-        
+
+try:
+    game.load_state()
+    game.show_menu()
+
+except (KeyboardInterrupt, EOFError):
+    print("\n입력이 중단되어 프로그램을 종료합니다.")
+
+finally:
+    game.save_state()        
