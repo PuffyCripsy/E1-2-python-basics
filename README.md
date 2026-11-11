@@ -148,7 +148,7 @@ E1-2-python-basics/
             "answer": 4
         },
         {
-            "question": "Jason fixed me a cup of coffee.",
+            "question": "He fixed me a cup of coffee.",
             "choices": [
                 "1형식",
                 "2형식",
@@ -205,14 +205,14 @@ python main.py
 ---
 
 ### 2) 새로운 퀴즈 문제 추가 (메뉴 2번)
-메뉴 2번(`퀴즈 문제 추가`)을 실행하여 새로운 5형식 문장 예문(`He made me happy.`)과 1~4번 보기, 정답 번호(`4`)를 입력하여 새 퀴즈를 등록하는 화면입니다.
+메뉴 2번(`퀴즈 문제 추가`)을 실행하여 새로운 4형식 문장 예문(`He fixed me a cup of coffee.`)과 1~4번 보기, 정답 번호(`3`)를 입력하여 새 퀴즈를 등록하는 화면입니다.
 
 ![02_quiz_add.png](docs/screenshots/02_quiz_add.png)
 
 ---
 
 ### 3) 추가된 퀴즈가 반영된 목록 확인 (메뉴 3번)
-새로운 퀴즈 등록 후 메뉴 3번을 다시 조회하여, 기존 5문제에서 신규 추가된 문제(`Jason fixed me a cup of coffee.`)까지 포함해 총 6문제로 정상 갱신된 전체 목록을 확인하는 화면입니다.
+새로운 퀴즈 등록 후 메뉴 3번을 다시 조회하여, 기존 5문제에서 신규 추가된 문제(`He fixed me a cup of coffee.`)까지 포함해 총 6문제로 정상 갱신된 전체 목록을 확인하는 화면입니다.
 
 ![03_quiz_list_updated.png](docs/screenshots/03_quiz_list_updated.png)
 
