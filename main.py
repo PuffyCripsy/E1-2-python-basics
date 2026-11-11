@@ -57,8 +57,11 @@ class QuizGame:
                 self.play_quiz()
             elif choice == "2":
                 self.add_quiz()
-            elif choice in ["3", "4"]:
+            elif choice == "3":
+                self.show_quizzes()
+            elif choice == "4":
                 print("이 기능은 다음 단계에서 구현합니다.")
+                
             elif choice == "5":
                 print("프로그램을 종료합니다.")
                 break
@@ -99,6 +102,24 @@ class QuizGame:
         self.quizzes.append(new_quiz)
 
         print("새로운 퀴즈가 추가되었습니다!")
+
+    def show_quizzes(self):
+        print("\n===== 등록된 퀴즈 목록 =====")
+
+        if not self.quizzes:
+            print("등록된 퀴즈가 없습니다.")
+            return
+
+        for quiz_number, quiz in enumerate(self.quizzes, start=1):
+            print(f"\n문제 {quiz_number}. {quiz.question}")
+
+            for number, choice in enumerate(quiz.choices, start=1):
+                print(f"{number}. {choice}")
+
+            print(f"정답: {quiz.answer}번")
+
+        print(f"\n총 {len(self.quizzes)}개의 문제가 등록되어 있습니다.")
+
 quizzes = [
     Quiz(
         "The birds sing sweetly in the trees.",
