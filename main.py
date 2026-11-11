@@ -10,6 +10,7 @@ class QuizGame:
     def __init__(self, quizzes):
         self.quizzes = quizzes
         self.score = 0
+        self.best_score = 0
 
     def play_quiz(self):
         self.score = 0
@@ -42,6 +43,10 @@ class QuizGame:
             f"{self.score}문제를 맞혔습니다."
         )
 
+        if self.score > self.best_score:
+            self.best_score = self.score
+            print("새로운 최고 점수입니다!")       
+
     def show_menu(self):
         while True:
             print("\n===== 영어 문장 형식 퀴즈 =====")
@@ -60,7 +65,7 @@ class QuizGame:
             elif choice == "3":
                 self.show_quizzes()
             elif choice == "4":
-                print("이 기능은 다음 단계에서 구현합니다.")
+                self.show_best_score()
                 
             elif choice == "5":
                 print("프로그램을 종료합니다.")
@@ -119,6 +124,10 @@ class QuizGame:
             print(f"정답: {quiz.answer}번")
 
         print(f"\n총 {len(self.quizzes)}개의 문제가 등록되어 있습니다.")
+
+    def show_best_score(self):
+        print("\n===== 최고 점수 =====")
+        print(f"현재 최고 점수: {self.best_score}점")
 
 quizzes = [
     Quiz(
