@@ -13,6 +13,7 @@ class QuizGame:
         self.quizzes = quizzes
         self.score = 0
         self.best_score = 0
+        self.has_played = False
 
     def play_quiz(self):
         self.score = 0
@@ -41,15 +42,18 @@ class QuizGame:
             else:
                 print(f"오답입니다. 정답은 {quiz.answer}번입니다.")
 
-        print(
+                print(
             f"\n퀴즈 종료! 총 {len(self.quizzes)}문제 중 "
             f"{self.score}문제를 맞혔습니다."
         )
 
+        self.has_played = True
+
         if self.score > self.best_score:
             self.best_score = self.score
-            print("새로운 최고 점수입니다!")       
-            self.save_state()
+            print("새로운 최고 점수입니다!")
+
+        self.save_state()
 
     def show_menu(self):
         while True:
@@ -132,13 +136,18 @@ class QuizGame:
 
     def show_best_score(self):
         print("\n===== 최고 점수 =====")
-        print(f"현재 최고 점수: {self.best_score}점")
+
+        if not self.has_played:
+            print("아직 퀴즈를 풀지 않았습니다.")
+        else:
+            print(f"현재 최고 점수: {self.best_score}점")
 
     def save_state(self):
         data = {
-            "best_score": self.best_score,
-            "quizzes": []
-        }
+        "best_score": self.best_score,
+        "has_played": self.has_played,
+        "quizzes": []
+    }
 
         for quiz in self.quizzes:
             data["quizzes"].append({
@@ -163,10 +172,14 @@ class QuizGame:
                 data = json.load(file)
 
             best_score = data["best_score"]
+            has_played = data.get("has_played", False)
             saved_quizzes = data["quizzes"]
 
             if not isinstance(best_score, int) or best_score < 0:
                 raise ValueError("최고 점수 데이터가 올바르지 않습니다.")
+
+            if not isinstance(has_played, bool):
+                raise ValueError("퀴즈 진행 기록이 올바르지 않습니다.")
 
             if not isinstance(saved_quizzes, list):
                 raise ValueError("퀴즈 목록 데이터가 올바르지 않습니다.")
@@ -192,6 +205,7 @@ class QuizGame:
                 loaded_quizzes.append(Quiz(question, choices, answer))
 
             self.best_score = best_score
+            self.has_played = has_played
             self.quizzes = loaded_quizzes
             print("저장된 데이터를 불러왔습니다.")
 
