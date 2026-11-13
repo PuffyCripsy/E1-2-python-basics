@@ -5,6 +5,7 @@
 > 💡 **주요 참고 문서**:
 > - [CHECKLIST.md](./CHECKLIST.md): 미션 필수 요구사항 및 종합 수행 체크리스트
 > - [GUIDE.md](./GUIDE.md): VS Code 단계별 실습 가이드 워크북
+> - [EXAM_NOTE.md](./EXAM_NOTE.md): 코디세이 E1-2 주간 시험 대비 원투펀치 핵심 요약 노트
 
 ---
 
@@ -38,6 +39,7 @@ E1-2-python-basics/
 ├── README.md               # 프로젝트 안내 및 최종 수행 보고서
 ├── CHECKLIST.md            # 미션 필수 요구사항 종합 점검표
 ├── GUIDE.md                # VS Code 단계별 실습 가이드 워크북
+├── EXAM_NOTE.md            # 코디세이 E1-2 시험 대비 원투펀치 핵심 요약 노트
 ├── .gitignore              # Python 캐시 및 임시 파일 제외 설정
 ├── main.py                 # 퀴즈 게임 메인 실행 파일 (Quiz, QuizGame 클래스 및 CLI)
 ├── state.json              # 퀴즈 목록 및 최고 점수 영속 저장 파일
